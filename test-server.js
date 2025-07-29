@@ -3,7 +3,7 @@ const express = require('express');
 const basicAuth = require('express-basic-auth');
 
 // Import the app from server.js
-const app = require('./server');
+const app = require('.');
 
 // Create a new server instance
 const PORT = 8000;
