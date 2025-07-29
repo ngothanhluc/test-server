@@ -47,6 +47,7 @@ app.use((req, res) => {
 const PORT = 443;
 const server = app.listen(PORT, () => {
   // Server started
+  console.log(`Server running on port ${PORT}`);
 });
 
 module.exports = app;
