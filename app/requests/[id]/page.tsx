@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 import { formatDateForDisplay } from "@/lib/dateUtils";
 
 interface Props {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function RequestDetailPage({ params }: Props) {
