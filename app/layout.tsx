@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BiTricity API Server",
-  description: "Next.js server for BiTricity API with authentication",
+  title: "Biotricity API Server",
+  description: "Next.js server for Biotricity API with authentication",
 };
 
 export default function RootLayout({
