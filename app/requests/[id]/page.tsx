@@ -2,6 +2,14 @@ import { getRequestById } from "@/lib/dataStorage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatDateForDisplay } from "@/lib/dateUtils";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface Props {
   params: Promise<{
@@ -30,80 +38,66 @@ export default async function RequestDetailPage({ params }: Props) {
           </Link>
         </div>
 
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-          <div className="px-4 py-5 sm:px-6">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">
-              Request Information
-            </h3>
-            <p className="mt-1 max-w-2xl text-sm text-gray-500">
+        <Card>
+          <CardHeader>
+            <CardTitle>Request Information</CardTitle>
+            <CardDescription>
               Detailed information about the API request
-            </p>
-          </div>
-          <div className="border-t border-gray-200">
-            <dl>
-              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">ID</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {request.id}
-                </dd>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">ID</h3>
+                <p className="mt-1 text-sm text-gray-900">{request.id}</p>
               </div>
-              <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">Timestamp</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">Timestamp</h3>
+                <p className="mt-1 text-sm text-gray-900">
                   {formatDateForDisplay(request.timestamp)}
-                </dd>
+                </p>
               </div>
-              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">Method</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                    {request.method}
-                  </span>
-                </dd>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">Method</h3>
+                <p className="mt-1 text-sm text-gray-900">
+                  <Badge variant="secondary">{request.method}</Badge>
+                </p>
               </div>
-              <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">Endpoint</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {request.endpoint}
-                </dd>
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">Endpoint</h3>
+                <p className="mt-1 text-sm text-gray-900">{request.endpoint}</p>
               </div>
-              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">
                   IP Address
-                </dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {request.ip}
-                </dd>
+                </h3>
+                <p className="mt-1 text-sm text-gray-900">{request.ip}</p>
               </div>
-              <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500">
                   User Agent
-                </dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                </h3>
+                <p className="mt-1 text-sm text-gray-900">
                   {request.userAgent}
-                </dd>
+                </p>
               </div>
-              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">Headers</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  <pre className="bg-gray-100 p-3 rounded overflow-auto text-xs">
-                    {JSON.stringify(request.headers, null, 2)}
-                  </pre>
-                </dd>
-              </div>
-              <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">
-                  Request Body
-                </dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  <pre className="bg-gray-100 p-3 rounded overflow-auto text-xs">
-                    {JSON.stringify(request.body, null, 2)}
-                  </pre>
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
+            </div>
+            <div className="mt-6">
+              <h3 className="text-sm font-medium text-gray-500">Headers</h3>
+              <pre className="bg-gray-100 p-3 rounded overflow-auto text-xs mt-1">
+                {JSON.stringify(request.headers, null, 2)}
+              </pre>
+            </div>
+            <div className="mt-4">
+              <h3 className="text-sm font-medium text-gray-500">
+                Request Body
+              </h3>
+              <pre className="bg-gray-100 p-3 rounded overflow-auto text-xs mt-1">
+                {JSON.stringify(request.body, null, 2)}
+              </pre>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
