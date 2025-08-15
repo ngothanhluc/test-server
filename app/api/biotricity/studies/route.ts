@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     // Save request data
     const savedRequest = await saveRequest({
       method: request.method,
-      endpoint: 'api/pow/studies',
+      endpoint: 'api/biotricity/studies',
       headers: Object.fromEntries(request.headers.entries()),
       body,
       ip: request.headers.get('x-forwarded-for') || 'unknown',
