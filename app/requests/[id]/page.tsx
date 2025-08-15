@@ -11,6 +11,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+interface Report {
+  contentBase64: string;
+}
+
+interface RequestBody {
+  report?: Report;
+  [key: string]: unknown;
+}
+
 interface Props {
   params: Promise<{
     id: string;
@@ -24,6 +33,9 @@ export default async function RequestDetailPage({ params }: Props) {
   if (!request) {
     notFound();
   }
+
+  // Type assertion for the request body
+  const requestBody = request.body as RequestBody | null;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -96,6 +108,22 @@ export default async function RequestDetailPage({ params }: Props) {
                 {JSON.stringify(request.body, null, 2)}
               </pre>
             </div>
+            {requestBody &&
+              requestBody.report &&
+              requestBody.report.contentBase64 && (
+                <div className="mt-4 h-[80vh]">
+                  <h3 className="text-sm font-medium text-gray-500">
+                    Report PDF
+                  </h3>
+                  <div className="mt-1 h-full">
+                    <iframe
+                      src={`data:application/pdf;base64,${requestBody.report.contentBase64}`}
+                      className="w-full h-full border rounded"
+                      title="Report PDF"
+                    />
+                  </div>
+                </div>
+              )}
           </CardContent>
         </Card>
       </div>

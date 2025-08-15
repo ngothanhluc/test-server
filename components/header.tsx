@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { siSimpleicons } from "simple-icons";
 import { Github } from "lucide-react";
 export function Header() {
   return (
