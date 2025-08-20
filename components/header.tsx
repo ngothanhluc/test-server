@@ -13,8 +13,8 @@ import { cn } from "@/lib/utils";
 import { Github } from "lucide-react";
 export function Header() {
   return (
-    <header className="border-b">
-      <div className="container flex h-16 items-center justify-between px-4">
+    <header className="border-b w-full">
+      <div className="w-full flex py-4 px-8 items-center justify-between">
         <div className="flex items-center space-x-4">
           <Link href="/" className="text-xl font-bold">
             Pow API Server
@@ -33,7 +33,7 @@ export function Header() {
         </div>
         <div className="flex items-center space-x-2">
           <Button variant="outline" size="sm" asChild>
-            <Link href="https://github.com/ngothanhluc" target="_blank">
+            <Link href="https://github.com" target="_blank">
               <Github className="h-4 w-4" />
             </Link>
           </Button>

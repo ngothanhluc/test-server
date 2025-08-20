@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 
 export default async function RequestsPage() {
   const requests = await getAllRequests();
+  console.log("🚀 ~ RequestsPage ~ requests:", requests);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -28,7 +29,8 @@ export default async function RequestsPage() {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">ID</TableHead>
-              <TableHead>Timestamp</TableHead>
+              <TableHead className="w-[250px]">Timestamp</TableHead>
+              <TableHead className="w-[100px]">StudyID</TableHead>
               <TableHead>Method</TableHead>
               <TableHead>Endpoint</TableHead>
               <TableHead>IP Address</TableHead>
@@ -40,6 +42,7 @@ export default async function RequestsPage() {
               <TableRow key={request.id}>
                 <TableCell className="font-medium">{request.id}</TableCell>
                 <TableCell>{formatDateForDisplay(request.timestamp)}</TableCell>
+                <TableCell>{request?.body?.biotricityStudyId}</TableCell>
                 <TableCell>
                   <Badge variant="secondary">{request.method}</Badge>
                 </TableCell>
