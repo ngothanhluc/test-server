@@ -27,17 +27,17 @@ export async function POST(request: NextRequest) {
   const authHeader = request.headers.get('authorization');
   const credentials = parseBasicAuth(authHeader);
 
-  if (!credentials || !checkAuth(credentials.username, credentials.password)) {
-    return NextResponse.json(
-      { error: 'Unauthorized' },
-      {
-        status: 401,
-        headers: {
-          'WWW-Authenticate': 'Basic realm="pow API"',
-        },
-      },
-    );
-  }
+  // if (!credentials || !checkAuth(credentials.username, credentials.password)) {
+  //   return NextResponse.json(
+  //     { error: 'Unauthorized' },
+  //     {
+  //       status: 401,
+  //       headers: {
+  //         'WWW-Authenticate': 'Basic realm="pow API"',
+  //       },
+  //     },
+  //   );
+  // }
 
   try {
     const body = await request.json();
